@@ -5,8 +5,6 @@ from kelas import *
 app = Flask(__name__,)
 CORS(app)
 
-token = "LMq0u8En80qOJI90rKTg6NNlhg5SGh95OApioGeU"
-
 
 ###########################DEFAULT ROUTE######################  
 @app.route('/')
@@ -59,7 +57,7 @@ def method_not_allowed_error(e):
 @app.route('/api/jadkul', methods=['GET'])
 def getKelas():
     kelas = request.args.get('kelas')
-    url = f"https://baak.gunadarma.ac.id/jadwal/cariJadKul?_token={token}&teks={kelas}"
+    url = f"https://baak.gunadarma.ac.id/jadwal/cariJadKul?teks={kelas}"
     if kelas is not None:
         getJadwal = scrape_jadwal(url)
         output = {
