@@ -60,15 +60,17 @@ def getKelas():
     url = f"https://baak.gunadarma.ac.id/jadwal/cariJadKul?teks={kelas}"
     if kelas is not None:
         getJadwal = scrape_jadwal(url)
-        output = {
-         'status':"sukses",   
-         'kelas': kelas,
-         'jadwal': getJadwal,
-     }
-        return jsonify(output), 200
+        if not getJadwal:
+            return jsonify({'error': 'Jadwal tidak ditemukan'}), 404
+        else:
+            output = {
+                'status': "sukses",
+                'kelas': kelas,
+                'jadwal': getJadwal,
+            }
+            return jsonify(output), 200
     else:
         return jsonify({'error': 'Server kampus Error'}), 400
-
 
 
 if __name__ == '__main__':

@@ -3,8 +3,8 @@ from bs4 import BeautifulSoup
 
 def scrape_jadwal(url):
     response = requests.get(url)
-    soup = BeautifulSoup(response.text, 'html.parser')
-    tabel_jadwal = soup.find('table', class_='table-custom')
+    scrape = BeautifulSoup(response.text, 'html.parser')
+    tabel_jadwal = scrape.find('table', class_='table-custom')
     jadwal = {}
 
    
